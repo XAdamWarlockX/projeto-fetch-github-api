@@ -1,32 +1,68 @@
 //Adicionando elementos na tela
 const screen = {
     userProfile: document.querySelector('.profile-data'),
-    renderUser(user){
-        this.userProfile.innerHTML = 
-        `<div class="info">
-            <img src="${user.avatarUrl}" alt="Foto de perfil do usuário"></img>
-            <div class="data">
-                <h1>${user.name ?? 'Não possui nome cadastrado 😕'}</h1>
-                <p>${user.bio ?? 'Não possui bio cadastrada 😕'}</p>
-            </div>
-         </div>`
+    renderUser(user) {
+        this.userProfile.innerHTML =
+            `<div class="info">
+                <img src="${user.avatarUrl}" alt="Foto de perfil do usuário"></img>
+                <div class="data">
+                    <h1>${user.name ?? 'Não possui nome cadastrado 😕'}</h1>
+                    <p>📝 ${user.bio ?? 'Não possui bio cadastrada 😕'}</p>
+                    <p>👥 Seguidores: ${user.followers}</p>
+                    <p>👤 Seguindo: ${user.following}</p>
+                </div>
+             </div>`
 
-         // Repositorios
-         let repositoriesItens = ''
-         user.repositories.forEach(repo => repositoriesItens += 
-            `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`);
+        // Repositorios
+        let repositoriesItens = ''
+        user.repositories.forEach(repo => repositoriesItens +=
+            `<li>
+                <a href="${repo.html_url}" target="_blank">${repo.name}
+                    <div>
+                        <p>🍴${repo.forks}</p>
+                        <p>⭐${repo.stargazers_count}</p>
+                        <p>👀${repo.watchers_count}</p> 
+                        <p>💻${repo.language ?? 'Não identificada'}</p>
+                    </div>
+                </a>
+             </li>`
+        );
 
-            if(user.repositories.length > 0){
-                this.userProfile.innerHTML += 
+        if (user.repositories.length > 0) {
+            this.userProfile.innerHTML +=
                 `<div class="repositories section">
                     <h2>Repositorios</h2>
                     <ul>${repositoriesItens}</ul>
                 </div>`
-            }
-    },
-    renderNotFound(){
-        this.userProfile.innerHTML = "<h3>Usuário não encontrado</h3>"
-    }
-}
+        }
 
-export { screen }
+        // Eventos
+        let eventsItens = ''
+        user.events.forEach(event => eventsItens +=
+            `<li>
+                <span>${event.repo.name}</span>
+                 - ${event.payload.description ?? "Sem mensagem de commit"}
+             </li>`
+        );
+
+        if (user.events.length > 0) {
+            this.userProfile.innerHTML +=
+                `<div class="events">
+                    <h2>Eventos</h2>
+                    <ul>${eventsItens}</ul>
+                 </div>`
+        } else {
+            this.userProfile.innerHTML +=
+                `<div class="events">
+                    <h2>Eventos</h2>
+                    <p>Usuário não possui Eventos</p>
+                 </div>`
+        }
+    },
+    renderNotFound() {
+        this.userProfile.innerHTML = 
+            "<h3>Usuário não encontrado</h3>"
+    }
+};
+
+export { screen };
