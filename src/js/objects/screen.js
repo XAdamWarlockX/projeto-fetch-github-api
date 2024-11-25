@@ -1,4 +1,4 @@
-//Adicionando elementos na tela
+// Adicionando elementos na tela
 const screen = {
     userProfile: document.querySelector('.profile-data'),
     renderUser(user) {
@@ -11,9 +11,9 @@ const screen = {
                     <p>👥 Seguidores: ${user.followers}</p>
                     <p>👤 Seguindo: ${user.following}</p>
                 </div>
-             </div>`
+            </div>`
 
-        // Repositorios
+        // Repositórios
         let repositoriesItens = ''
         user.repositories.forEach(repo => repositoriesItens +=
             `<li>
@@ -25,42 +25,54 @@ const screen = {
                         <p>💻${repo.language ?? 'Não identificada'}</p>
                     </div>
                 </a>
-             </li>`
+            </li>`
         );
 
         if (user.repositories.length > 0) {
             this.userProfile.innerHTML +=
                 `<div class="repositories section">
-                    <h2>Repositorios</h2>
+                    <h2>Repositórios</h2>
                     <ul>${repositoriesItens}</ul>
                 </div>`
         }
 
         // Eventos
         let eventsItens = ''
-        user.events.forEach(event => eventsItens +=
-            `<li>
-                <span>${event.repo.name}</span>
-                 - ${event.payload.description ?? "Sem mensagem de commit"}
-             </li>`
-        );
+        user.events.forEach(event => {
+            if (event.type === "PushEvent") {
+                eventsItens +=
+                    `<li>
+                        <p>
+                            <span>${event.repo.name}</span> - ${event.payload.commits[0].message}
+                        </p>
+                    </li>`
+            } else{
+                eventsItens +=
+                    `<li>
+                        <p>
+                            <span>${event.repo.name}</span> - Criado um ${event.payload.ref_type}
+                        </p>
+                    </li>`
+            }
+
+        });
 
         if (user.events.length > 0) {
             this.userProfile.innerHTML +=
                 `<div class="events">
                     <h2>Eventos</h2>
                     <ul>${eventsItens}</ul>
-                 </div>`
+                </div>`
         } else {
             this.userProfile.innerHTML +=
                 `<div class="events">
                     <h2>Eventos</h2>
                     <p>Usuário não possui Eventos</p>
-                 </div>`
+                </div>`
         }
     },
     renderNotFound() {
-        this.userProfile.innerHTML = 
+        this.userProfile.innerHTML =
             "<h3>Usuário não encontrado</h3>"
     }
 };
