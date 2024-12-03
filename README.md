@@ -38,5 +38,5 @@ cd nome-da-pasta
 ```
 4 - Abra o projeto no VScode
 ```
-cd .
+code .
 ```
