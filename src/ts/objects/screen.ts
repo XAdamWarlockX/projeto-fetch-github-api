@@ -1,7 +1,9 @@
-// Adicionando elementos na tela
+import { UserCustomer } from "./user.js";
+
+//Adicionando elementos na tela
 const screen = {
-    userProfile: document.querySelector('.profile-data'),
-    renderUser(user) {
+    userProfile: document.querySelector('.profile-data') as HTMLDivElement,
+    renderUser(user: UserCustomer): void {
         this.userProfile.innerHTML =
             `<div class="info">
                 <img src="${user.avatarUrl}" alt="Foto de perfil do usuário"></img>
@@ -13,9 +15,9 @@ const screen = {
                 </div>
             </div>`
 
-        // Repositórios
-        let repositoriesItens = ''
-        user.repositories.forEach(repo => repositoriesItens +=
+        // Repositorios
+        let repositoriesItens: string = ''
+        user.repositories.forEach((repo) => repositoriesItens +=
             `<li>
                 <a href="${repo.html_url}" target="_blank">${repo.name}
                     <div>
@@ -37,8 +39,8 @@ const screen = {
         }
 
         // Eventos
-        let eventsItens = ''
-        user.events.forEach(event => {
+        let eventsItens: string = ''
+        user.events.forEach((event) => {
             if (event.type === "PushEvent") {
                 eventsItens +=
                     `<li>
@@ -71,8 +73,8 @@ const screen = {
                 </div>`
         }
     },
-    renderNotFound() {
-        this.userProfile.innerHTML =
+    renderNotFound(): void {
+        this.userProfile.innerHTML = 
             "<h3>Usuário não encontrado</h3>"
     }
 };

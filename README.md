@@ -14,6 +14,8 @@ https://docs.github.com/pt/rest/users/users?apiVersion=2022-11-28#get-a-user
 
 - JavaScript <img align="center" alt="JavaScript" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
 
+- TypeScript <img align="center" alt="TypeScript" height="30" width="40" src="https://cdn.worldvectorlogo.com/logos/typescript.svg">
+
 ## Prévia
 
 <img src="./src/images/previa-gif.gif">
@@ -32,11 +34,23 @@ Para clonar o projeto, você pode usar o terminal de sua preferência, o passo a
 ```
 git clone "url do projeto"
 ```
-3 - Entre na pasta do projeto pelo terminal
+3 - Acesse a pasta do projeto
 ```
-cd nome-da-pasta
+cd projeto-fetch-github-api
 ```
-4 - Abra o projeto no VScode
+4 - Instale as dependências do projeto
+```
+npm install
+```
+5 - Compile os arquivos TypeScript
+```
+npx tsc
+``` 
+ou
+```
+tsc
+```
+6 - Abra no vscode
 ```
 code .
 ```

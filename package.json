@@ -1,0 +1,15 @@
+{
+  "name": "projeto-fetch-github-api",
+  "version": "1.0.0",
+  "description": "Projeto que consome o API de usuários do Github e exibi as informações do mesmo ao pesquisar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Adam Warlock",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

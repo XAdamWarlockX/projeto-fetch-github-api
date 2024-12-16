@@ -1,5 +1,23 @@
+import { Events } from "../services/events.js"
+import { User } from "../services/getuser.js"
+import { Repositories } from "../services/repositories.js"
+
+interface UserCustomer {
+    avatarUrl: string
+    name: string
+    bio: string
+    userName: string
+    followers: string | number
+    following: string | number
+    repositories: Repositories[]
+    events: Events[]
+    setInfo(gitHubUser: User): void
+    setRepositories(repositories: Repositories[]): void
+    setEvents(events: Events[]): void
+}
+
 // Objeto que vai conter as informações de usuario que queremos do API
-const user = {
+const user: UserCustomer = {
     avatarUrl: '',
     name: '',
     bio: '',
@@ -24,4 +42,4 @@ const user = {
     }
 }
 
-export { user }
+export { user, UserCustomer }
