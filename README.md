@@ -58,3 +58,4 @@ tsc
 ```
 code .
 ```
+7 - Execute o projeto usando o Live server
